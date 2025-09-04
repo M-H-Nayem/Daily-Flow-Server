@@ -32,8 +32,6 @@ async function run() {
 
     app.get("/schedule", async (req, res) => {
       let { email } = req.query;
-      // let email = "mahmudulhasannayemssnic@gmail.com"
-
       let query = { user_email: email };
 
       let result = await schedulesCollection.find(query).toArray();
@@ -44,7 +42,6 @@ async function run() {
       try {
         let newClass = req.body;
         console.log("DATA FROM BODY", newClass);
-        // The propertiesCollection should be your schedule collection, e.g., 'scheduleCollection'
         let result = await schedulesCollection.insertOne(newClass);
         res.status(201).send(result);
       } catch (error) {
@@ -91,8 +88,6 @@ async function run() {
 
  app.get("/transactions", async (req, res) => {
       let { email } = req.query;
-      // let email = "mahmudulhasannayemssnic@gmail.com"
-
       let query = { user_email: email };
 
       let result = await transactionsCollection.find(query).toArray();
@@ -103,7 +98,6 @@ async function run() {
       try {
         let newTransaction = req.body;
         console.log("DATA FROM BODY", newTransaction);
-        // The propertiesCollection should be your schedule collection, e.g., 'scheduleCollection'
         let result = await transactionsCollection.insertOne(newTransaction);
         res.status(201).send(result);
       } catch (error) {
@@ -117,7 +111,6 @@ async function run() {
         const { id } = req.params;
         const updatedData = req.body;
         
-        // Remove the immutable _id field from the updatedData
         delete updatedData._id;
 
         console.log(`Updating class with ID: ${id}`);
